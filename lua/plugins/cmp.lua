@@ -18,8 +18,8 @@ cmp.setup {
 		['C-p>'] = cmp.mapping.select_prev_item(),
 		['C-d>'] = cmp.mapping.scroll_docs(-4),
 		['C-f>'] = cmp.mapping.scroll_docs(4),
-		['C-Space>'] = cmp.mapping.complete(),
-		['CRn>'] = cmp.mapping.confirm {
+		['M-Space>'] = cmp.mapping.complete(),
+		['CR>'] = cmp.mapping.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		},
@@ -28,7 +28,7 @@ cmp.setup {
 				cmp.select_next_item()
 			elseif luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
-			else 
+			else
 				fallback()
 			end
 		end, {'i', 's'}),
@@ -52,39 +52,53 @@ cmp.setup {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
-	formatting = {
-		format = function(vim_item)
-			-- Set icons for completion items
-			local kind_icons = {
-				Text = "",
-				Method = "",
-				Function = "",
-				Constructor = "",
-				Field = "",
-				Variable = "",
-				Class = "ﴯ",
-				Interface = "",
-				Module = "",
-				Property = "ﰠ",
-				Unit = "",
-				Value = "",
-				Enum = "",
-				Keyword = "",
-				Snippet = "",
-				Color = "",
-				File = "",
-				Reference = "",
-				Folder = "",
-				EnumMember = "",
-				Constant = "",
-				Struct = "",
-				Event = "",
-				Operator = "",
-				TypeParameter = ""
-			}
+    formatting = {
+        fields = { "abbr", "kind", "menu" },  -- Define what fields to display
+        expandable_indicator = true,  -- Show expandable indicator
+        format = function(entry, vim_item)
+            local kind_icons = {
+                Text = "",
+                Method = "",
+                Function = "󰊕",
+                Constructor = "",
+                Field = "",
+                Variable = "󰫧",
+                Class = "",
+                Interface = "",
+                Module = "",
+                Property = "",
+                Unit = "",
+                Value = "󰎠",
+                Enum = "",
+                Keyword = "󰌋",
+                Snippet = "",
+                Color = "󰏘",
+                File = "",
+                Reference = "",
+                Folder = "",
+                EnumMember = "",
+                Constant = "󰏿",
+                Struct = "",
+                Event = "",
+                Operator = "󰆕",
+                TypeParameter = "󰅲",
+            }
 
-			vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-			return vim_item
-		end
-	},
+            -- Ensure a valid kind icon exists
+            local icon = kind_icons[vim_item.kind] or ""  -- "" as fallback
+
+            -- Correctly set the kind without breaking cmp.Entry type
+            vim_item.kind = string.format("%s %s", icon, vim_item.kind)
+
+            -- Optional: Show source name in menu (useful for debugging)
+            vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                luasnip = "[Snippet]",
+                buffer = "[Buffer]",
+                path = "[Path]",
+            })[entry.source.name] or "[Unknown]"
+
+            return vim_item
+        end
+    },
 }
