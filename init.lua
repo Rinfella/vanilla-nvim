@@ -1,4 +1,8 @@
 -- init.lua
+-- Entry point ofr Neovim configuration
 
-require "options"
-require "plugins"
+-- Load core settings
+require("core")
+
+-- Bootstrap and load plugins
+require("plugins")
