@@ -13,15 +13,13 @@ A clean and modular Neovim configuration.
 │   │   ├── init.lua              # Loads all core modules
 │   │   ├── keymaps.lua           # All keybindings in one place
 │   │   └── options.lua           # Vim options and settings
-│   ├── plugins/                  # Plugin configurations
-│   │   ├── init.lua              # Plugin loader
-│   │   ├── cmp.lua               # Completion plugin config
-│   │   ├── lsp.lua               # LSP configuration
-│   │   ├── telescope.lua         # Telescope config
-│   │   ├── treesitter.lua        # Treesitter config
-│   │   └── ui.lua                # UI-related plugins (themes, lualine, etc.)
-│   └── utils/                    # Utility functions (future use)
-│       └── init.lua              # Utility functions loader
+│   └── plugins/                  # Plugin configurations
+│       ├── init.lua              # Plugin loader
+│       ├── cmp.lua               # Completion plugin config
+│       ├── lsp.lua               # LSP configuration
+│       ├── telescope.lua         # Telescope config
+│       ├── treesitter.lua        # Treesitter config
+│       └── ui.lua                # UI-related plugins (themes, lualine, etc.)
 └── README.md                     # Documentation
 ```
 
@@ -45,7 +43,7 @@ A clean and modular Neovim configuration.
 
 2. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/nvim-config.git ~/.config/nvim
+   git clone https://github.com/Rinfella/vanilla-nvim.git ~/.config/nvim
    ```
 
 3. Start Neovim:
