@@ -54,12 +54,14 @@ require("lazy").setup({
     },
 
     -- TODO Comments
+    
     -- PERF: 
     -- HACK:
     -- FIX: 
     -- TODO:
     -- NOTE: 
     -- WARNING: 
+
     {
       "folke/todo-comments.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
@@ -75,6 +77,14 @@ require("lazy").setup({
 			require("plugins.ui")
 		end,
 	},
+
+    -- Dashboard Alpha
+    {
+        'goolord/alpha-nvim',
+        config = function ()
+            require'alpha'.setup(require'alpha.themes.dashboard'.config)
+        end
+    };
 
 	-- Status Line
 	{
