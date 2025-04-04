@@ -143,9 +143,6 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim",
 		},
 		cmd = "Neotree",
-		keys = {
-			{ "<leader>e", "<cmd>Neotree reveal<cr>", desc = "Explorer" },
-		},
 		config = function()
             require("nvim-web-devicons").setup { default = true }
 			require("core.keymaps")

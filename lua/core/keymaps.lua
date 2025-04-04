@@ -33,19 +33,17 @@ map('n', 'N', 'Nzzzv', { desc = 'Previous search result keeping cursor centered'
 map('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected line down' })
 map('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected line up' })
 
--- Open Neotree
-map('n', '<leader>e', '<cmd>Neotree reveal<CR>', { desc = 'Open file explorer' })
-map('n', '<leader>o', '<cmd>Neotree toggle<CR>', { desc = 'Toggle file explorer' })
-
 -- Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Find files' })
 map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Find text' })
 map('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'Find buffers' })
 map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = 'Find help' })
 
--- TODO
-map('n', '<leader>td', '<cmd>TodoTelescope<cr>', { desc = 'Open TODOs finder'})
-map('n', '<leader>tl', '<cmd>TodoLocList<cr>', { desc = 'Open TODOs location list'})
+-- Neotree
+map('n', '<leader>e', '<cmd>Neotree reveal<CR>', { desc = 'Open file explorer' })
+map('n', '<leader>o', '<cmd>Neotree toggle<CR>', { desc = 'Toggle file explorer' })
+map('n', '<leader>bb', '<cmd>Neotree toggle show buffers<CR>', { desc = 'Toggle buffers explorer' })
+
 
 -- The mapping for LSP will be defined in plugins/lsp.lua as they're directly related to LSP functionality
 
