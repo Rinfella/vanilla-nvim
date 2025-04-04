@@ -52,6 +52,13 @@ cmp.setup {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
+    performance = {
+        max_view_entries = 8,
+    },
+    completion = {
+        completeopt = 'menu,menuone,noselect',
+        keyword_length = 2,
+    },
     formatting = {
         fields = { "abbr", "kind", "menu" },  -- Define what fields to display
         expandable_indicator = true,  -- Show expandable indicator

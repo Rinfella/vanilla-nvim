@@ -4,12 +4,12 @@
 local on_attach = function (_, bufnr)
     -- Create a convenient function for mapping
     local nmap = function (keys, func, desc)
-        if desc then 
+        if desc then
             desc = 'LSP: ' .. desc
         end
-       vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc }) 
+       vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
-    
+
     -- LSP Keymaps
     nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
     nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
@@ -28,7 +28,7 @@ local on_attach = function (_, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function (_)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
-    
+
     -- Add diagnostic keymaps
     nmap('<leader>dl', '<cmd>Telescope diagnostics<cr>', 'List Diagnostics')
     nmap('[d', vim.diagnostic.goto_prev, 'Previous Diagnostic')
@@ -86,6 +86,6 @@ vim.diagnostic.config({
     security_sort = true,
     float = {
         border = "rounded",
-        source = "always",
+        source = true,
     },
 })

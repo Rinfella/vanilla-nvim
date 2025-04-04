@@ -1,28 +1,25 @@
--- MAP 
-local map = vim.keymap.set
 
--- TODO Keybinds
-local todo = require("todo-comments")
-map('n', ']t', function()
-  todo.jump_next()
-end, { desc = "Next todo comment" })
+-- local todo = require("todo-comments")
+-- map('n', ']t', function()
+--    todo.jump_next()
+--  end, { desc = "Next todo comment" })
+--
+--  map('n', '[t', function()
+--    todo.jump_prev()
+--  end, { desc = "Previous todo comment" })
+--
+--  map('n', ']t', function()
+--    todo.jump_next({keywords = { "TODO", "FIX", "WARNING" }})
+--  end, { desc = "Next error/warning todo comment" })
 
-map('n', '[t', function()
-  todo.jump_prev()
-end, { desc = "Previous todo comment" })
-
-map('n', ']t', function()
-  todo.jump_next({keywords = { "ERROR", "WARNING" }})
-end, { desc = "Next error/warning todo comment" })
-
-map('n', '<leader>td', '<cmd>TodoTelescope<cr>', { desc = 'Open TODOs finder'})
-map('n', '<leader>tl', '<cmd>TodoLocList<cr>', { desc = 'Open TODOs location list'})
-
--- Move lines of texts
-local moveline = require('moveline')
-map('n', '<M-k>', moveline.up)
-map('n', '<M-j>', moveline.down)
-map('v', '<M-k>', moveline.block_up)
-map('v', '<M-j>', moveline.block_down)
-
-
+-- local map = vim.keymap.set
+-- local scretch = require('0xJohnnyboy/scretch.nvim')
+-- map('n', '<leader>sn', scretch.new)
+-- map('n', '<leader>snn', scretch.new_named)
+-- map('n', '<leader>sft', scretch.new_from_template)
+-- map('n', '<leader>sl', scretch.last)
+-- map('n', '<leader>ss', scretch.search)
+-- map('n', '<leader>st', scretch.edit_template)
+-- map('n', '<leader>sg', scretch.grep)
+-- map('n', '<leader>sv', scretch.explore)
+-- map('n', '<leader>sat', scretch.save_as_template)

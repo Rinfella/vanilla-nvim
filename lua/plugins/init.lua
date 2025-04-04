@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
-		"--filter=blob:none",
+    	"--filter=blob:none",
 		"git@github.com:folke/lazy.nvim.git",
 		"--branch=stable",
 		lazypath,
@@ -47,14 +47,7 @@ require("lazy").setup({
 		 config = function() require("Comment").setup() end
 	},
 
-    -- Move line
-    {
-        'willothy/moveline.nvim',
-        build = 'make',
-    },
-
     -- TODO Comments
-    
     -- PERF: 
     -- HACK:
     -- FIX: 
@@ -84,7 +77,7 @@ require("lazy").setup({
         config = function ()
             require'alpha'.setup(require'alpha.themes.dashboard'.config)
         end
-    };
+    },
 
 	-- Status Line
 	{
@@ -108,6 +101,30 @@ require("lazy").setup({
 			require("plugins.cmp")
 		end,
 	},
+
+    -- Auto Save 
+    {
+        "https://git.sr.ht/~nedia/auto-save.nvim",
+        event = { "BufReadPre" },
+        opts = {
+          events = { 'InsertLeave', 'BufLeave' },
+          silent = false,
+          exclude_ft = { 'neo-tree' },
+        },
+        config = function()
+           require("plugins.autosave")
+        end,
+    },
+
+    -- SCRETCH
+    {
+        '0xJohnnyboy/scretch.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+        config = function()
+            require("plugins.scretch")
+            require("scretch").setup {}
+        end,
+    },
 
 	-- Telescope
 	{
@@ -211,5 +228,55 @@ require("lazy").setup({
             },
           },
     },
+
+    -- AutoPairs
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
+        -- use opts = {} for passing setup options
+        -- this is equivalent to setup({}) function
+    },
+
+      -- CHEATSHEET NVIM
+    {
+        "doctorfree/cheatsheet.nvim",
+        event = "VeryLazy",
+        dependencies = {
+          { "nvim-telescope/telescope.nvim" },
+          { "nvim-lua/popup.nvim" },
+          { "nvim-lua/plenary.nvim" },
+        },
+        config = function()
+          local ctactions = require "cheatsheet.telescope.actions"
+          require("cheatsheet").setup {
+            bundled_cheetsheets = {
+              enabled = { "default", "lua", "markdown", "regex", "netrw", "unicode" },
+              disabled = { "nerd-fonts" },
+            },
+            bundled_plugin_cheatsheets = {
+              enabled = {
+                "auto-session",
+                "goto-preview",
+                "octo.nvim",
+                "telescope.nvim",
+                "vim-easy-align",
+                "vim-sandwich",
+              },
+              disabled = { "gitsigns" },
+            },
+            include_only_installed_plugins = true,
+            telescope_mappings = {
+              ["<CR>"] = ctactions.select_or_fill_commandline,
+              ["<A-CR>"] = ctactions.select_or_execute,
+              ["<C-Y>"] = ctactions.copy_cheat_value,
+              ["<C-E>"] = ctactions.edit_user_cheatsheet,
+            },
+          }
+      end,
+    },
+
 })
 
+-- WARN: 
+-- BUG: 
