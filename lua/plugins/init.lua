@@ -38,7 +38,9 @@ require("lazy").setup({
 	},
 
     -- Neovim syntax
-    "folke/neodev.nvim",
+    {
+        "folke/neodev.nvim",
+    },
 
 	-- Comments toggle
 	{
@@ -102,6 +104,15 @@ require("lazy").setup({
 		end,
 	},
 
+    -- Auto Format
+    {
+        "https://git.sr.ht/~nedia/auto-format.nvim",
+        event = "BufWinEnter",
+        config = function()
+            require("auto-format").setup()
+        end
+    },
+
     -- Auto Save 
     {
         "https://git.sr.ht/~nedia/auto-save.nvim",
@@ -150,7 +161,7 @@ require("lazy").setup({
 		end,
 	},
 
-	-- File Esplorer (Neotree)
+	-- File Explorer (Neotree)
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
