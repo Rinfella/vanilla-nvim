@@ -1,4 +1,3 @@
-
 -- local todo = require("todo-comments")
 -- map('n', ']t', function()
 --    todo.jump_next()
