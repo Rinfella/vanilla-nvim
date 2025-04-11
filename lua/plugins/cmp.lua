@@ -47,6 +47,7 @@ cmp.setup {
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
+        { name = 'codeium' },
         { name = 'render-markdown' },
     },
     window = {
@@ -90,6 +91,7 @@ cmp.setup {
                 Event = "",
                 Operator = "󰆕",
                 TypeParameter = "󰅲",
+                Codeium = "",
             }
 
             -- Ensure a valid kind icon exists
@@ -104,6 +106,7 @@ cmp.setup {
                 luasnip = "[Snippet]",
                 buffer = "[Buffer]",
                 path = "[Path]",
+                codeium = "[Codeium]",
             })[entry.source.name] or "[Unknown]"
 
             return vim_item
