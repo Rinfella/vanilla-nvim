@@ -8,18 +8,12 @@ require("auto-format").setup({
     -- These file types will not be formatted automatically
     exclude_ft = {},
 
-    -- Prefer formatting via LSP for these file types.
-    prefer_lsp = {
-        "bash",
-        "go",
-        "html",
-        "json",
-        "lua",
-        "php",
-        "python",
-        "sql",
-        "yaml",
-        "terraformls",
-        "tflint",
-    },
+    -- Function to determine if LSP is available
+    should_format = function(bufnr)
+        local clients = vim.lsp.get_clients({ bufnr = bufnr })
+        if next(clients) == nil then
+            return true
+        end
+        return false
+    end,
 })

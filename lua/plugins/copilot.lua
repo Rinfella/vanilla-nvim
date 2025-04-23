@@ -9,16 +9,16 @@ function M.setup()
         },
         suggestion = {
             enabled = true,
-            auto_trigger = false,
+            auto_trigger = true,
             debounce = 75,
-            -- keymap = {
-            --     accept = "<Tab>",
-            --     accept_word = "<M-w>",
-            --     accept_line = "<M-l>",
-            --     next = "<M-]>",
-            --     prev = "<M-[>",
-            --     dismiss = "<C-]>",
-            -- },
+            keymap = {
+                accept = "<Tab>",
+                accept_word = "<M-j>",
+                accept_line = "<M-l>",
+                next = "<C-]>",
+                prev = "<C-[>",
+                dismiss = "<C-|",
+            },
         },
         filetypes = {
             ["*"] = true,

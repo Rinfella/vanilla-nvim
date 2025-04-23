@@ -30,8 +30,6 @@ require("lazy").setup({
             "neovim/nvim-lspconfig",
             "hrsh7th/cmp-nvim-lsp",
         },
-
-
         config = function()
             require("plugins.lsp")
         end,
@@ -112,26 +110,10 @@ require("lazy").setup({
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         event = "InsertEnter",
-        dependencies = { "zbirenbaum/copilot-cmp" },
+        -- dependencies = { "zbirenbaum/copilot-cmp" },
         config = function()
             require("plugins.copilot").setup()
         end
-    },
-
-    -- Copilot-CMP
-    {
-        "zbirenbaum/copilot-cmp",
-        dependencies = { "zbirenbaum/copilot.lua" },
-        config = function()
-            require("copilot_cmp").setup({
-                method = "getCompletionsCycling",
-                formatters = {
-                    label = require("copilot_cmp.format").format_label_text,
-                    insert_text = require("copilot_cmp.format").format_insert_text,
-                    preview = require("copilot_cmp.format").deindent,
-                },
-            })
-        end,
     },
 
     -- Codeium
