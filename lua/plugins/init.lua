@@ -110,10 +110,11 @@ require("lazy").setup({
     -- Copilot
     {
         "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
         event = "InsertEnter",
         config = function()
-            require("copilot").setup()
-        end,
+            require("plugins.copilot").setup()
+        end
     },
 
     -- Copilot-CMP
@@ -121,8 +122,7 @@ require("lazy").setup({
         "zbirenbaum/copilot-cmp",
         dependencies = { "zbirenbaum/copilot.lua" },
         config = function()
-            require("copilot_cmp").setup({
-            })
+            require("copilot_cmp").setup()
         end,
     },
 
