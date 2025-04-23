@@ -4,13 +4,13 @@ local M = {}
 function M.setup()
     require("copilot").setup({
         panel = {
-            enabled = false,
-            -- auto_refresh = true,
+            enabled = true,
+            auto_refresh = true,
         },
         suggestion = {
-            enabled = false,
-            -- auto_trigger = false,
-            -- debounce = 75,
+            enabled = true,
+            auto_trigger = false,
+            debounce = 75,
             -- keymap = {
             --     accept = "<Tab>",
             --     accept_word = "<M-w>",
@@ -23,6 +23,7 @@ function M.setup()
         filetypes = {
             ["*"] = true,
         },
+        copilot_node_command = 'node', -- Node.js version used by Copilot
     })
 end
 
