@@ -47,7 +47,7 @@ cmp.setup {
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
-        { name = 'codeium' },
+        { name = 'copilot' },
         { name = 'render-markdown' },
     },
     window = {
@@ -92,6 +92,7 @@ cmp.setup {
                 Operator = "󰆕",
                 TypeParameter = "󰅲",
                 Codeium = "",
+                Copilot = "",
             }
 
             -- Ensure a valid kind icon exists
@@ -106,10 +107,18 @@ cmp.setup {
                 luasnip = "[Snippet]",
                 buffer = "[Buffer]",
                 path = "[Path]",
-                codeium = "[Codeium]",
+                copilot = "[Copilot]",
             })[entry.source.name] or "[Unknown]"
 
             return vim_item
         end
     },
 }
+
+cmp.event:on("menu_opened", function()
+    vim.b.copilot_suggestion_hidden = true
+end)
+
+cmp.event:on("menu_closed", function()
+    vim.b.copilot_suggestion_hidden = false
+end)

@@ -107,17 +107,37 @@ require("lazy").setup({
         end,
     },
 
+    -- Copilot
     {
-        "Exafunction/windsurf.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "hrsh7th/nvim-cmp",
-        },
+        "zbirenbaum/copilot.lua",
+        event = "InsertEnter",
         config = function()
-            require("codeium").setup({
-            })
-        end
+            require("copilot").setup()
+        end,
     },
+
+    -- Copilot-CMP
+    {
+        "zbirenbaum/copilot-cmp",
+        dependencies = { "zbirenbaum/copilot.lua" },
+        config = function()
+            require("copilot_cmp").setup({
+            })
+        end,
+    },
+
+    -- Codeium
+    -- {
+    --     "Exafunction/windsurf.nvim",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "hrsh7th/nvim-cmp",
+    --     },
+    --     config = function()
+    --         require("codeium").setup({
+    --         })
+    --     end
+    -- },
 
     -- Auto Format
     {

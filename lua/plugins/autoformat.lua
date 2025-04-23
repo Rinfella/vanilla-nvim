@@ -1,11 +1,10 @@
-
 require("auto-format").setup({
     -- Name of the augroup
     augroup_name = "AutoFormat",
 
     timeout = 2000,
     -- If formatting takes longer than this amount of time, it will fail.
-    
+
     -- These file types will not be formatted automatically
     exclude_ft = {},
 
@@ -20,5 +19,7 @@ require("auto-format").setup({
         "python",
         "sql",
         "yaml",
+        "terraformls",
+        "tflint",
     },
 })
