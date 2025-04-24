@@ -25,6 +25,7 @@ require("lazy").setup({
 
     {
         "williamboman/mason-lspconfig.nvim",
+        event = "BufReadPre",
         dependencies = {
             "williamboman/mason.nvim",
             "neovim/nvim-lspconfig",
@@ -93,9 +94,7 @@ require("lazy").setup({
     -- Completion
     {
         "hrsh7th/nvim-cmp",
-        lazy = false,
-        priority = 100,
-        event = "InsertEnter",
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             "hrsh7th/cmp-buffer",
             "L3MON4D3/LuaSnip",
