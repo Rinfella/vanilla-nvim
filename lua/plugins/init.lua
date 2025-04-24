@@ -93,8 +93,11 @@ require("lazy").setup({
     -- Completion
     {
         "hrsh7th/nvim-cmp",
+        lazy = false,
+        priority = 100,
         event = "InsertEnter",
         dependencies = {
+            "hrsh7th/cmp-buffer",
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
@@ -110,12 +113,12 @@ require("lazy").setup({
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         event = "InsertEnter",
-        -- dependencies = { "zbirenbaum/copilot-cmp" },
         config = function()
             require("plugins.copilot").setup()
         end
     },
 
+    --
     -- Codeium
     -- {
     --     "Exafunction/windsurf.nvim",
