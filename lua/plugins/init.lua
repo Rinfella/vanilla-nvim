@@ -335,7 +335,7 @@ require("lazy").setup({
         cmd = { "ToggleTerm", "TermExec" },
         keys = { "<C-\\>", "<leader>tf", "<leader>th", "<leader>tv" },
         config = function()
-            require("plugins.toggleterm")
+            require("plugins.terminal")
         end,
     },
 
@@ -359,7 +359,8 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            require("plugins.harpoon")
+            require("telescope").load_extension("harpoon")
+            require("plugins.harpoon").setup()
         end,
     },
 

@@ -14,24 +14,28 @@ function M.setup()
         excluded_filetypes = { "harpoon" },
         mark_branch = false,
 
-        -- Keymaps
 
     })
-    -- local mark = require("harpoon.mark")
-    -- local ui = require("harpoon.ui")
-    --
-    -- local map = vim.keymap.set
-    -- map("n", "<leader>ha", mark.add_file, { desc = "Add to Harpoon" })
-    -- map("n", "<leader>hm", ui.toggle_quick_menu, { desc = "Harpoon Menu" })
-    --
-    -- map("n", "<leader>1", function() ui.nav_file(1) end, { desc = "Harpoon buffer 1" })
-    -- map("n", "<leader>2", function() ui.nav_file(2) end, { desc = "Harpoon buffer 2" })
-    -- map("n", "<leader>3", function() ui.nav_file(3) end, { desc = "Harpoon buffer 3" })
-    -- map("n", "<leader>4", function() ui.nav_file(4) end, { desc = "Harpoon buffer 4" })
-    --
-    -- -- Navigate through marks
-    -- map("n", "<C-n>", ui.nav_next, { desc = "Next Harpoon mark" })
-    -- map("n", "<C-p>", ui.nav_prev, { desc = "Prev Harpoon mark" })
+    local mark = require("harpoon.mark")
+    local ui = require("harpoon.ui")
+    local ts = require("telescope")
+
+    local map = vim.keymap.set
+
+    map("n", "<leader>ha", mark.add_file, { desc = "Add to Harpoon" })
+
+    -- Navigate through marks
+    map("n", "<leader>hm", function() ts.extensions.harpoon.marks() end, { desc = "Telescope Harpoon marks" })
+    map("n", "<leader>hh", ui.toggle_quick_menu, { desc = "Harpoon Menu" })
+    map("n", "<C-n>", ui.nav_next, { desc = "Next Harpoon mark" })
+    map("n", "<C-p>", ui.nav_prev, { desc = "Prev Harpoon mark" })
+
+    -- Shortcuts for navigating to specific marks
+    map("n", "<leader>1", function() ui.nav_file(1) end, { desc = "Harpoon buffer 1" })
+    map("n", "<leader>2", function() ui.nav_file(2) end, { desc = "Harpoon buffer 2" })
+    map("n", "<leader>3", function() ui.nav_file(3) end, { desc = "Harpoon buffer 3" })
+    map("n", "<leader>4", function() ui.nav_file(4) end, { desc = "Harpoon buffer 4" })
+    map("n", "<leader>5", function() ui.nav_file(5) end, { desc = "Harpoon buffer 5" })
 end
 
 return M
