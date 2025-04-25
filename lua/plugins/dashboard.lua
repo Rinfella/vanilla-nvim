@@ -1,6 +1,16 @@
 -- Dashboard configuration for alpha-nvim
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
+local wasted_hours = require("plugins.wasted-hours")
+
+wasted_hours.setup_tracking()
+
+-- Function to format hours nicely
+local function format_hours(hours)
+    -- Round off to 2 decimal places
+    hours = math.floor(hours * 100) / 100
+    return tostring(hours)
+end
 
 -- Custom header with ASCII art
 dashboard.section.header.val = {
@@ -12,7 +22,10 @@ dashboard.section.header.val = {
     "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
     "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
     "                                                     ",
-    "          " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
+    "                        " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
+    "                                                     ",
+    "                                                     ",
+    "    Total hours wasted configuring this shit: " .. format_hours(wasted_hours.get_hours()),
     "                                                     ",
 }
 
