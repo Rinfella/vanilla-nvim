@@ -373,15 +373,6 @@ require("lazy").setup({
         end,
     },
 
-    -- ILLUMINATE
-    {
-        "RRethy/vim-illuminate",
-        event = { "BufReadPost", "BufNewFile" },
-        config = function()
-            require("plugins.illuminate")
-        end,
-    },
-
     -- CHEATSHEET NVIM
     {
         "doctorfree/cheatsheet.nvim",
