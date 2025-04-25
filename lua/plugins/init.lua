@@ -194,6 +194,15 @@ require("lazy").setup({
         end,
     },
 
+    -- Telescope file explorer
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        config = function()
+            require("telescope").load_extension("file_browser")
+        end,
+    },
+
     -- Tree Sitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -282,13 +291,95 @@ require("lazy").setup({
         },
     },
 
-    -- AutoPairs
+    -- AUTOPAIRS
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = true
         -- use opts = {} for passing setup options
         -- this is equivalent to setup({}) function
+    },
+
+    -- WHICHKEY
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("plugins.which-key")
+        end,
+    },
+
+    -- GITSIGNS
+    {
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("plugins.git")
+        end,
+    },
+
+    -- INDENT BLANKLINE
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        main = "ibl",
+        config = function()
+            require("plugins.indent").setup()
+        end,
+    },
+
+    -- TOGGLETERM
+    {
+        "akinsho/toggleterm.nvim",
+        version = "*",
+        cmd = { "ToggleTerm", "TermExec" },
+        keys = { "<C-\\>", "<leader>tf", "<leader>th", "<leader>tv" },
+        config = function()
+            require("plugins.toggleterm")
+        end,
+    },
+
+    -- NOICE
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        config = function()
+            require("plugins.noice")
+        end,
+    },
+
+    -- HARPOON
+    {
+        "ThePrimeagen/harpoon",
+        branch = "master",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("plugins.harpoon")
+        end,
+    },
+
+    -- AUTO SESSION
+    {
+        "rmagatti/auto-session",
+        cmd = { "SessionSave", "SessionRestore", "SessionDelete", "Autosession" },
+        keys = { "<leader>Ss", "<leader>Sd", "<leader>Sf" },
+        config = function()
+            require("plugins.session")
+        end,
+    },
+
+    -- ILLUMINATE
+    {
+        "RRethy/vim-illuminate",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            require("plugins.illuminate")
+        end,
     },
 
     -- CHEATSHEET NVIM
@@ -301,40 +392,7 @@ require("lazy").setup({
             { "nvim-lua/plenary.nvim" },
         },
         config = function()
-            local ctactions = require "cheatsheet.telescope.actions"
-            require("cheatsheet").setup {
-                bundled_cheetsheets = {
-                    enabled = {
-                        "default",
-                        "lua",
-                        "markdown",
-                        "regex",
-                        "netrw",
-                        "unicode",
-                    },
-
-                    disabled = { "nerd-fonts" },
-                },
-                bundled_plugin_cheatsheets = {
-                    enabled = {
-                        "auto-session",
-                        "goto-preview",
-                        "octo.nvim",
-                        "telescope.nvim",
-                        "vim-easy-align",
-                        "vim-sandwich",
-                    },
-                    disabled = { "gitsigns" },
-                },
-                include_only_installed_plugins = true,
-                telescope_mappings = {
-                    ["<CR>"] = ctactions.select_or_fill_commandline,
-                    ["<A-CR>"] = ctactions.select_or_execute,
-                    ["<C-Y>"] = ctactions.copy_cheat_value,
-                    ["<C-E>"] = ctactions.edit_user_cheatsheet,
-                },
-            }
+            require("plugins.cheatsheet")
         end,
     },
-
 })

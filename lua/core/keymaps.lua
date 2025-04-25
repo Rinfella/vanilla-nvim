@@ -46,9 +46,7 @@ map('n', '<leader>bb', '<cmd>Neotree toggle show buffers<CR>', { desc = 'Toggle 
 
 -- TODO Keybinds
 
- map('n', '<leader>td', '<cmd>TodoTelescope<cr>', { desc = 'Open TODOs finder'})
- map('n', '<leader>tl', '<cmd>TodoLocList<cr>', { desc = 'Open TODOs location list'})
+map('n', '<leader>td', '<cmd>TodoTelescope<cr>', { desc = 'Open TODOs finder' })
+map('n', '<leader>tl', '<cmd>TodoLocList<cr>', { desc = 'Open TODOs location list' })
 
 -- The mapping for LSP will be defined in plugins/lsp.lua as they're directly related to LSP functionality
-
-

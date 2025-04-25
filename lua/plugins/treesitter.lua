@@ -8,8 +8,6 @@ require('nvim-treesitter.configs').setup {
         'cpp',
         'php',
         'go',
-        'javascript',
-        'typescript',
         'html',
         'css',
         'markdown',
@@ -52,3 +50,4 @@ require('nvim-treesitter.configs').setup {
         },
     },
 }
+
