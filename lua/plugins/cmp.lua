@@ -104,6 +104,7 @@ cmp.setup {
         { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'lorem_ipsum' },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'render-markdown' },
@@ -161,18 +162,20 @@ cmp.setup {
                 TypeParameter = "󰅲",
                 Copilot       = "",
                 Codeium       = "",
+                Lorem         = "󰒕",
             }
             -- Ensure a valid kind icon exists
             local icon = kind_icons[vim_item.kind] or "" -- "" as fallback
             vim_item.kind = string.format("%s %s", icon, vim_item.kind)
             -- Optional: Show source name in menu (useful for debugging)
             vim_item.menu = ({
-                codeium  = "[Codeium]",
-                copilot  = "[Copilot]",
-                nvim_lsp = "[LSP]",
-                buffer   = "[Buffer]",
-                luasnip  = "[Snippet]",
-                path     = "[Path]",
+                codeium     = "[Codeium]",
+                copilot     = "[Copilot]",
+                nvim_lsp    = "[LSP]",
+                buffer      = "[Buffer]",
+                luasnip     = "[Snippet]",
+                lorem_ipsum = "[Lorem Ipsum]",
+                path        = "[Path]",
             })[entry.source.name] or "[Unknown]"
             return vim_item
         end

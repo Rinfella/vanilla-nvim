@@ -96,11 +96,12 @@ require("lazy").setup({
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
-            "hrsh7th/cmp-buffer",
             "L3MON4D3/LuaSnip",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp",
             "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
-            "hrsh7th/cmp-nvim-lsp",
+            "dnnr1/lorem-ipsum.nvim",
         },
         config = function()
             require("plugins.cmp")
