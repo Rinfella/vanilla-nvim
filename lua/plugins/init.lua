@@ -125,8 +125,7 @@ require("lazy").setup({
             "hrsh7th/nvim-cmp",
         },
         config = function()
-            require("codeium").setup({
-            })
+            require("codeium").setup()
         end
     },
 
@@ -349,6 +348,15 @@ require("lazy").setup({
         },
         config = function()
             require("plugins.noice")
+        end,
+    },
+
+    -- LSP SIGNATURE
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "LspAttach",
+        config = function()
+            require("plugins.lsp-signature").setup()
         end,
     },
 
