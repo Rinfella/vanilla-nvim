@@ -4,7 +4,7 @@
 <a href="https://dotfyle.com/Rinfella/vanilla-nvim"><img src="https://dotfyle.com/Rinfella/vanilla-nvim/badges/leaderkey?style=flat" /></a>
 <a href="https://dotfyle.com/Rinfella/vanilla-nvim"><img src="https://dotfyle.com/Rinfella/vanilla-nvim/badges/plugin-manager?style=flat" /></a>
 
-<a href="https://dotfyle.com/plugins/{owner}/{name}"><img src="https://dotfyle.com/plugins/{owner}/{name}/shield" /></a>
+<a href="https://dotfyle.com/plugins/Rinfella/vanilla-nvim"><img src="https://dotfyle.com/plugins/Rinfella/vanilla-nvim/shield" /></a>
 
 ## Directory Structure
 
