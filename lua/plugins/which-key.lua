@@ -44,14 +44,14 @@ function M.setup()
     })
 
     -- Register groups
-    which_key.register({
+    which_key.add({
         ["<leader>f"] = { name = "+find" },
         ["<leader>b"] = { name = "+buffer" },
         ["<leader>g"] = { name = "+git" },
         ["<leader>s"] = { name = "+scretch" },
         ["<leader>x"] = { name = "+trouble/diagnostics" },
         ["<leader>l"] = { name = "+lsp" },
-    })
+    }, { prefix = "<leader>" })
 end
 
 return M

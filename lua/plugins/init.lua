@@ -335,7 +335,7 @@ require("lazy").setup({
         cmd = { "ToggleTerm", "TermExec" },
         keys = { "<C-\\>", "<leader>tf", "<leader>th", "<leader>tv" },
         config = function()
-            require("plugins.terminal")
+            require("plugins.terminal").setup()
         end,
     },
 

@@ -15,11 +15,11 @@ function M.get_hours()
             file:write("50") -- Initial value of 50 hours
             file:close()
         end
-        return 50
+        return tostring(hours_file)
     end
 
     local file = io.open(hours_file, "r")
-    if not file then return 50 end
+    if not file then return 0 end
     local hours = tonumber(file:read("*all")) or 50
     file:close()
     return hours
