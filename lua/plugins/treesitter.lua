@@ -25,6 +25,11 @@ require('nvim-treesitter.configs').setup {
 
     indent = { enable = true },
 
+    fold = {
+        enable = true,
+        disable = { 'python' },
+    },
+
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -50,4 +55,3 @@ require('nvim-treesitter.configs').setup {
         },
     },
 }
-

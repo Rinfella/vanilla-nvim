@@ -18,6 +18,14 @@ vim.o.signcolumn = 'yes'
 vim.o.termguicolors = true
 vim.o.mouse = 'a'
 
+-- Folding
+vim.o.foldenable = true
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldnestmax = 3
+
 -- Indentation
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -40,7 +48,6 @@ vim.o.wrap = true
 -- Decrease update time
 vim.o.updatetime = 300
 
--- Add to your options.lua
 vim.g.loaded_python3_provider = 0 -- Disable Python
 vim.g.loaded_ruby_provider = 0    -- Disable Ruby
 vim.g.loaded_perl_provider = 0    -- Disable Perl
