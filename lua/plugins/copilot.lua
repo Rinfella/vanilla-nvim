@@ -8,7 +8,7 @@ function M.setup()
             auto_trigger = true,
             debounce = 75,
             keymap = {
-                accept = false,
+                accept = "<M-a>",
                 accept_word = "<M-w>",
                 accept_line = "<M-l>",
                 next = "<M-]>",
