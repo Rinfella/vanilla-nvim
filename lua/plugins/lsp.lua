@@ -1,8 +1,7 @@
 -- LSP Configuration
 
--- Define on attach function with keymaps for LSP
+-- Define on_attach function with keymaps for LSP
 local on_attach = function(_, bufnr)
-    -- Create a convenient function for mapping
     local nmap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
@@ -35,47 +34,34 @@ local on_attach = function(_, bufnr)
     nmap(']d', vim.diagnostic.goto_next, 'Next Diagnostic')
 end
 
--- Setup capabilities with nvim-cpmp integration
+-- Setup capabilities with nvim-cmp integration
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Setup Mason and LSP
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            pacakage_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
+-- Configure Lua language server
+vim.lsp.config('lua_ls', {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = { version = 'LuaJIT' },
+            diagnostics = {
+                globals = { 'vim', 'require' },
+            },
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+        },
+    },
 })
 
-require("mason-lspconfig").setup_handlers({
-    -- Default configuration for all servers
-    function(server_name)
-        require("lspconfig")[server_name].setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-    end,
+-- Initialize mason
+require("mason").setup()
 
-    --Special configuration for Lua Language server
-    ["lua_ls"] = function()
-        require("neodev").setup()
-        require("lspconfig").lua_ls.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-            settings = {
-                Lua = {
-                    workspace = { checkThirdParty = false },
-                    telemetry = { enable = false },
-                    diagnostics = {
-                        globals = { "vim" }
-                    },
-                },
-            },
-        }
-    end,
+-- Setup mason-lspconfig
+require("mason-lspconfig").setup({
+    ensure_installed = { "lua_ls" },
+    -- automatic_enable is true by default; explicitly setting it for clarity
+    automatic_enable = true,
 })
 
 -- Diagnostic configuration
@@ -83,7 +69,7 @@ vim.diagnostic.config({
     virtual_text = true,
     update_in_insert = false,
     underline = true,
-    security_sort = true,
+    severity_sort = true,
     float = {
         border = "rounded",
         source = true,
