@@ -1,75 +1,66 @@
--- Completion plugin configuration
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local copilot = require("copilot.suggestion")
 
--- Load VSCode like snippets
+-- VSCode-style snippets
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup()
 
--- Function to control Copilot trigger state
-local function set_trigger(trigger)
-    vim.b.copilot_suggestion_auto_trigger = trigger
-    vim.b.copilot_suggestion_hidden = not trigger
+-- Setup copilot integration toggle
+local function setup_copilot_toggle()
+    local ok, copilot = pcall(require, "copilot.suggestion")
+    if not ok then return end
+
+    local function set_trigger(trigger)
+        vim.b.copilot_suggestion_auto_trigger = trigger
+        vim.b.copilot_suggestion_hidden = not trigger
+    end
+
+    cmp.event:on("menu_opened", function()
+        if copilot.is_visible() then copilot.dismiss() end
+        set_trigger(false)
+    end)
+
+    cmp.event:on("menu_closed", function()
+        set_trigger(not luasnip.expand_or_locally_jumpable())
+    end)
+
+    vim.api.nvim_create_autocmd("User", {
+        pattern = { "LuasnipInsertNodeEnter", "LuasnipInsertNodeLeave" },
+        callback = function()
+            set_trigger(not luasnip.expand_or_locally_jumpable())
+        end,
+    })
+
+    vim.api.nvim_create_autocmd('ModeChanged', {
+        group = vim.api.nvim_create_augroup('UnlinkSnippetOnModeChange', { clear = true }),
+        pattern = { 's:n', 'i:*' },
+        callback = function(event)
+            if luasnip.session and luasnip.session.current_nodes[event.buf] and not luasnip.session.jump_active then
+                luasnip.unlink_current()
+            end
+        end,
+    })
 end
 
--- Hide suggestions when the completion menu is open
-cmp.event:on("menu_opened", function()
-    if copilot.is_visible() then
-        copilot.dismiss()
-    end
-    set_trigger(false)
-end)
+setup_copilot_toggle()
 
--- Disable suggestions when inside a snippet
-cmp.event:on("menu_closed", function()
-    set_trigger(not luasnip.expand_or_locally_jumpable())
-end)
-
--- Add autocmd for LuaSnip events
-vim.api.nvim_create_autocmd("User", {
-    pattern = { "LuasnipInsertNodeEnter", "LuasnipInsertNodeLeave" },
-    callback = function()
-        set_trigger(not luasnip.expand_or_locally_jumpable())
-    end,
-})
-
--- HACK: Cancel the snippet session when leaving insert mode.
-vim.api.nvim_create_autocmd('ModeChanged', {
-    group = vim.api.nvim_create_augroup('UnlinkSnippetOnModeChange', { clear = true }),
-    pattern = { 's:n', 'i:*' },
-    callback = function(event)
-        if
-            luasnip.session
-            and luasnip.session.current_nodes[event.buf]
-            and not luasnip.session.jump_active
-        then
-            luasnip.unlink_current()
-        end
-    end,
-})
-
--- Inside a snippet, use backspace to remove the placeholder
+-- Backspace in snippet mode
 vim.keymap.set('s', '<BS>', '<C-O>s')
 
-cmp.setup {
+cmp.setup({
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end,
     },
-    -- Disable preselect. On enter, the first thing will be used if nothing is selected.
     preselect = cmp.PreselectMode.None,
-    mapping = cmp.mapping.preset.insert {
+    mapping = cmp.mapping.preset.insert({
         ['<C-j>'] = cmp.mapping.select_next_item(),
         ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<M-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
+        ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -89,14 +80,10 @@ cmp.setup {
             end
         end, { 'i', 's' }),
         ['<C-b>'] = function()
-            if cmp.visible_docs() then
-                cmp.close_docs()
-            else
-                cmp.open_docs()
-            end
+            if cmp.visible_docs() then cmp.close_docs() else cmp.open_docs() end
         end,
         ['/'] = cmp.mapping.close(),
-    },
+    }),
     sources = {
         { name = 'codeium' },
         { name = 'copilot' },
@@ -112,7 +99,6 @@ cmp.setup {
         documentation = cmp.config.window.bordered(),
     },
     view = {
-        -- Explicitly request documentation
         docs = { auto_open = false },
     },
     performance = {
@@ -133,39 +119,15 @@ cmp.setup {
         expandable_indicator = true,
         format = function(entry, vim_item)
             local kind_icons = {
-                Text          = "",
-                Method        = "",
-                Function      = "󰊕",
-                Constructor   = "",
-                Field         = "",
-                Variable      = "󰫧",
-                Class         = "",
-                Interface     = "",
-                Module        = "",
-                Property      = "",
-                Unit          = "",
-                Value         = "󰎠",
-                Enum          = "",
-                Keyword       = "󰌋",
-                Snippet       = "",
-                Color         = "󰏘",
-                File          = "󰈙",
-                Reference     = "",
-                Folder        = "",
-                EnumMember    = "",
-                Constant      = "󰏿",
-                Struct        = "",
-                Event         = "",
-                Operator      = "󰆕",
-                TypeParameter = "󰅲",
-                Copilot       = "",
-                Codeium       = "",
-                Lorem         = "󰒕",
+                Text          = "", Method = "",   Function = "󰊕", Constructor = "",
+                Field         = "", Variable = "󰫧", Class = "", Interface = "",
+                Module        = "", Property = "", Unit = "", Value = "󰎠",
+                Enum          = "", Keyword = "󰌋",  Snippet = "", Color = "󰏘",
+                File          = "󰈙", Reference = "", Folder = "", EnumMember = "",
+                Constant      = "󰏿", Struct = "", Event = "", Operator = "󰆕",
+                TypeParameter = "󰅲", Copilot = "", Codeium = "", Lorem = "󰒕",
             }
-            -- Ensure a valid kind icon exists
-            local icon = kind_icons[vim_item.kind] or "" -- "" as fallback
-            vim_item.kind = string.format("%s %s", icon, vim_item.kind)
-            -- Optional: Show source name in menu (useful for debugging)
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind] or "", vim_item.kind)
             vim_item.menu = ({
                 codeium     = "[Codeium]",
                 copilot     = "[Copilot]",
@@ -176,6 +138,7 @@ cmp.setup {
                 path        = "[Path]",
             })[entry.source.name] or "[Unknown]"
             return vim_item
-        end
+        end,
     },
-}
+})
+
