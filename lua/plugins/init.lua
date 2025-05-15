@@ -20,7 +20,19 @@ require("lazy").setup({
     -- Mason + LSP
     {
         "williamboman/mason.nvim",
-        event = "VeryLazy",
+        cmd = "Mason",
+        config = function()
+            require("mason").setup({
+                ui = {
+                    border = "rounded",
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗",
+                    },
+                },
+            })
+        end,
     },
 
     {
