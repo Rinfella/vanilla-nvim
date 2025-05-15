@@ -1,4 +1,4 @@
--- Plugin Management using lazy.nvim
+--  Plugin Management using lazy.nvim
 
 -- Bootstrap lazy.nvim if it does not exist
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -140,6 +140,18 @@ require("lazy").setup({
         config = function()
             require("codeium").setup()
         end
+    },
+
+    -- Neoclip
+    {
+        "AckslD/nvim-neoclip.lua",
+        dependencies = {
+            {"nvim-telescope/telescope.nvim"},
+            {'kkharji/sqlite.lua', module = 'sqlite'},
+        },
+        config = function()
+            require("plugins.neoclip")
+        end,
     },
 
     -- Auto Format

@@ -49,4 +49,6 @@ map('n', '<leader>bb', '<cmd>Neotree toggle show buffers<CR>', { desc = 'Toggle 
 map('n', '<leader>td', '<cmd>TodoTelescope<cr>', { desc = 'Open TODOs finder' })
 map('n', '<leader>tl', '<cmd>TodoLocList<cr>', { desc = 'Open TODOs location list' })
 
+-- Neoclip yanked items picker (Telescope)
+map('n', '<leader>nc', '<cmd>Telescope neoclip<cr>', { desc = 'Open yanked items picker' })
 -- The mapping for LSP will be defined in plugins/lsp.lua as they're directly related to LSP functionality
