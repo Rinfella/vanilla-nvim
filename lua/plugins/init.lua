@@ -49,8 +49,11 @@ require("lazy").setup({
     },
 
     -- Neovim syntax
+
     {
-        "folke/neodev.nvim",
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {},
     },
 
 
@@ -59,6 +62,15 @@ require("lazy").setup({
         "numToStr/Comment.nvim",
         event = "VeryLazy",
         config = function() require("Comment").setup() end
+    },
+
+    -- Colorizer
+    {
+        "norcalli/nvim-colorizer.lua",
+        event = "VeryLazy",
+        config = function()
+            require("colorizer").setup()
+        end,
     },
 
     -- TODO Comments
@@ -146,8 +158,8 @@ require("lazy").setup({
     {
         "AckslD/nvim-neoclip.lua",
         dependencies = {
-            {"nvim-telescope/telescope.nvim"},
-            {'kkharji/sqlite.lua', module = 'sqlite'},
+            { "nvim-telescope/telescope.nvim" },
+            { 'kkharji/sqlite.lua',           module = 'sqlite' },
         },
         config = function()
             require("plugins.neoclip")
