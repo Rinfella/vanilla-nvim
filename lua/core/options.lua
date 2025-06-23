@@ -53,6 +53,14 @@ vim.g.loaded_ruby_provider = 0    -- Disable Ruby
 vim.g.loaded_perl_provider = 0    -- Disable Perl
 vim.g.loaded_node_provider = 0    -- Disable Node
 
+-- GUI Cursor for vscode (tul lo ltkk)
+vim.opt.guicursor = {
+    "n-v-c:block",
+    "i-ci:ver25",
+    "r-cr:hor20",
+    "o:hor50",
+    "a:blinkwait700-blinkoff400-blinkon250"
+}
 -- Disable unused builtin plugins
 local disabled_built_ins = {
     "netrw",
