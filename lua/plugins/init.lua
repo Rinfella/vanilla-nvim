@@ -56,7 +56,6 @@ require("lazy").setup({
         opts = {},
     },
 
-
     -- Comments toggle
     {
         "numToStr/Comment.nvim",
@@ -245,6 +244,16 @@ require("lazy").setup({
         build = ":TSUpdate",
         config = function()
             require("plugins.treesitter")
+        end,
+    },
+
+    -- Obsidian Neovim
+    {
+        "obsidian-nvim/obsidian.nvim",
+        version = "*",
+        ft = "markdown",
+        config = function()
+            require("plugins.obsidian")
         end,
     },
 

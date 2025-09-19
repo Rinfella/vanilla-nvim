@@ -7,9 +7,10 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 -- Setup servers
 local servers = {
     "lua_ls",
-    "ts_ls",
     "pyright",
     "jsonls",
+    "intelephense",
+    "html",
 } -- Add your servers here
 for _, server in ipairs(servers) do
     lspconfig[server].setup({
