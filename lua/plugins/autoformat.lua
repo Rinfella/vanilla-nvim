@@ -4,7 +4,6 @@ require("auto-format").setup({
 
     timeout = 2000,
     -- If formatting takes longer than this amount of time, it will fail.
-
     -- These file types will not be formatted automatically
     exclude_ft = {},
 
