@@ -1,6 +1,22 @@
 -- Setup Mason
 require("mason").setup()
 
+-- Configure filetype detection for .env files
+vim.filetype.add({
+	pattern = {
+		["%.env"] = "dotenv",
+		["%.env%..*"] = "dotenv",
+	},
+	filename = {
+		[".env"] = "dotenv",
+		[".env.local"] = "dotenv",
+		[".env.example"] = "dotenv",
+		[".env.production"] = "dotenv",
+		[".env.development"] = "dotenv",
+		[".env.test"] = "dotenv",
+	},
+})
+
 -- Configure global capabilities for new 0.11+ API
 vim.lsp.config("*", {
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
