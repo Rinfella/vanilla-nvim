@@ -173,17 +173,6 @@ local client = require("obsidian").setup({
 		update_debounce = 200,
 		max_file_length = 5000,
 
-		-- Enhanced checkboxes (UI rendering only - NOT for toggle order)
-		-- checkboxes = {
-		-- 	[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-		-- 	["x"] = { char = "", hl_group = "ObsidianDone" },
-		-- 	[">"] = { char = "", hl_group = "ObsidianRightArrow" },
-		-- 	["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-		-- 	["!"] = { char = "", hl_group = "ObsidianImportant" },
-		-- 	["-"] = { char = "", hl_group = "ObsidianCancelled" },
-		-- 	["/"] = { char = "󰤕", hl_group = "ObsidianInProgress" },
-		-- },
-		--
 		bullets = { char = "•", hl_group = "ObsidianBullet" },
 		external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
 		reference_text = { hl_group = "ObsidianRefText" },
@@ -229,7 +218,7 @@ local client = require("obsidian").setup({
 	-- IMPORTANT: Use checkbox.order instead of ui.checkboxes for toggle order
 	-- This controls the order when cycling through checkboxes with toggle commands
 	checkbox = {
-		order = { " ", "~", "!", "/", "-", ">", "x" }, -- Custom order for checkbox cycling
+		order = { " ", "-", "x" }, -- Custom order for checkbox cycling
 	},
 
 	-- Enhanced callbacks for custom behavior
@@ -342,14 +331,19 @@ local function setup_obsidian_keymaps()
 	vim.keymap.set("n", "<leader>op", "<cmd>Obsidian paste_img<cr>", { desc = "Paste image", unpack(opts) })
 	vim.keymap.set("n", "<leader>ox", "<cmd>Obsidian toggle_checkbox<cr>", { desc = "Toggle checkbox", unpack(opts) })
 
-	-- Smart actions
+	-- === SMART ACTION (ROBUST VERSION) ===
 	vim.keymap.set("n", "<cr>", function()
-		if require("obsidian").util.cursor_on_markdown_link() then
-			return "<cmd>Obsidian follow_link<cr>"
+		local obsidian = require("obsidian")
+
+		-- 1. Try standard smart action first (handles links, folding, etc.)
+		-- If it returns a specific command (like FollowLink), use it.
+		local action = obsidian.util.smart_action and obsidian.util.smart_action()
+		if action and action ~= "<cr>" and action ~= nil then
+			return action
 		else
 			return "<cr>"
 		end
-	end, { expr = true, desc = "Smart follow link" })
+	end, { desc = "Obsidian Smart Action", expr = true, buffer = true })
 end
 
 -- Setup keymaps
