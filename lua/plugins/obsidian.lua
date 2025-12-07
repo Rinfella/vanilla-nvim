@@ -1,6 +1,6 @@
 local client = require("obsidian").setup({
 	-- Log level for obsidian.nvim
-	log_level = vim.log.levels.INFO,
+	log_level = vim.log.levels.ERROR,
 
 	-- Disable legacy commands to avoid deprecation warnings
 	legacy_commands = false,
