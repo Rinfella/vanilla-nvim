@@ -174,16 +174,16 @@ local client = require("obsidian").setup({
 		max_file_length = 5000,
 
 		-- Enhanced checkboxes (UI rendering only - NOT for toggle order)
-		checkboxes = {
-			[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-			["x"] = { char = "", hl_group = "ObsidianDone" },
-			[">"] = { char = "", hl_group = "ObsidianRightArrow" },
-			["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-			["!"] = { char = "", hl_group = "ObsidianImportant" },
-			["-"] = { char = "", hl_group = "ObsidianCancelled" },
-			["/"] = { char = "󰤕", hl_group = "ObsidianInProgress" },
-		},
-
+		-- checkboxes = {
+		-- 	[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+		-- 	["x"] = { char = "", hl_group = "ObsidianDone" },
+		-- 	[">"] = { char = "", hl_group = "ObsidianRightArrow" },
+		-- 	["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+		-- 	["!"] = { char = "", hl_group = "ObsidianImportant" },
+		-- 	["-"] = { char = "", hl_group = "ObsidianCancelled" },
+		-- 	["/"] = { char = "󰤕", hl_group = "ObsidianInProgress" },
+		-- },
+		--
 		bullets = { char = "•", hl_group = "ObsidianBullet" },
 		external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
 		reference_text = { hl_group = "ObsidianRefText" },
