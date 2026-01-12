@@ -15,6 +15,10 @@ local client = require("obsidian").setup({
 				notes_subdir = "notes",
 			},
 		},
+		{
+			name = "main",
+			path = "~/Documents/piakOS",
+		},
 	},
 
 	-- Specific dir for notes (optional)

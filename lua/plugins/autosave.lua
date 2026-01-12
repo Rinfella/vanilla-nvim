@@ -1,37 +1,21 @@
-
 local autosave = require("auto-save")
 
 autosave.setup({
-  -- The name of the augroup.
-  augroup_name = "AutoSavePlug",
+	augroup_name = "AutoSavePlug",
 
- -- The events in which to trigger an auto save.
-  events = { "InsertLeave", "TextChanged" },
+	-- The events in which to trigger an auto save.
+	events = { "FocusLost", "BufLeave" },
+	silent = true,
+	save_cmd = nil,
 
-  -- If you'd prefer to silence the output of `save_fn`.
-  silent = true,
+	save_fn = function()
+		if vim.bo.buftype == "" and vim.bo.modifiable then
+			vim.cmd("silent! update")
+		end
+	end,
 
-  -- If you'd prefer to write a vim command.
-  save_cmd = nil,
+	-- Waits 1 sec after the event to save.
+	timeout = 1000,
 
-  -- What to do after checking if auto save conditions have been met.
-  save_fn = function()
-    local config = require("auto-save.config")
-    if config.save_cmd ~= nil then
-      vim.cmd(config.save_cmd)
-    elseif config.silent then
-      vim.cmd("silent! w")
-    else
-      vim.cmd("w")
-    end
-  end,
-
-  -- May define a timeout, or a duration to defer the save for - this allows
-  -- for formatters to run, for example if they're configured via an autocmd
-  -- that listens for `BufWritePre` event.
-  timeout = nil,
-
-  -- Define some filetypes to explicitly not save, in case our existing conditions
-  -- don't quite catch all the buffers we'd prefer not to write to.
-  exclude_ft = {},
+	exclude_ft = { "neo-tree", "TelescopePrompt", "harpoon" },
 })
