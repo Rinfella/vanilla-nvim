@@ -1,6 +1,11 @@
+-- init.lua
+--
+-- Load core options
+require("config.options")
 
--- Load core settings
-require("core")
+-- Load Lazy Plugin manager
+require("config.lazy")
 
--- Bootstrap and load plugins
-require("plugins")
+-- Load Keymaps & Native logic
+require("config.keymaps")
+require("config.autocmds")
