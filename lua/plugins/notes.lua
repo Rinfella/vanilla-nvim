@@ -3,12 +3,21 @@ return {
     -- Obsidian
     {
         "obsidian-nvim/obsidian.nvim",
+        version = "*",
+        lazy = true,
         ft = "markdown",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
             workspaces = {
-                { name = "notes", path = "~/Documents/notes" },
+                {
+                    name = "notes",
+                    path = vim.fn.expand("~/Documents/obsidian-notes"),
+                },
             },
+            ui = { enable = false }, -- Optional: clean UI
+            completion = { nvim_cmp = true },
+
+            legacy_commands = false,
         },
     },
 
@@ -19,11 +28,13 @@ return {
         opts = {},
     },
 
-    -- Scretch (Your custom notes)
+    -- Scretch
     {
         "0xJohnnyboy/scretch.nvim",
         cmd = "Scretch",
-        opts = {},
+        opts = {
+            scretch_dir = vim.fn.stdpath("data") .. "/scretch",
+        },
     },
 
     -- Cheatsheet
@@ -31,5 +42,15 @@ return {
         "doctorfree/cheatsheet.nvim",
         cmd = "Cheatsheet",
         dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+    },
+
+    -- Auto Session
+    {
+        "rmagatti/auto-session",
+        config = function()
+            require("auto-session").setup({
+                suppress_dirs = { "~/", "~/projects", "~/Downloads", "/" },
+            })
+        end,
     }
 }

@@ -13,7 +13,6 @@ map("n", "<C-k>", "<C-w>k", { desc = "Window Up" })
 map("n", "<C-l>", "<C-w>l", { desc = "Window Right" })
 
 -- === Editor Tools ===
--- No longer conflicts because we moved Obsidian keys
 map("n", "<leader>e", "<cmd>Neotree reveal<cr>", { desc = "Explorer Reveal" })
 map("n", "<leader>o", "<cmd>Neotree toggle<cr>", { desc = "Explorer Toggle" })
 
@@ -28,11 +27,19 @@ map("n", "<leader>gg", "<cmd>Lazygit<cr>", { desc = "Lazygit" })
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<cr>", { desc = "Blame Line" })
 
 -- === Notes (Grouped under <leader>n) ===
--- Consolidated all note taking apps here to clean up keymaps
-map("n", "<leader>nn", "<cmd>ObsidianNew<cr>", { desc = "Note: New (Obsidian)" })
-map("n", "<leader>ns", "<cmd>Scretch<cr>", { desc = "Note: Scratchpad" })
-map("n", "<leader>nf", "<cmd>ObsidianSearch<cr>", { desc = "Note: Find" })
-map("n", "<leader>nd", "<cmd>ObsidianToday<cr>", { desc = "Note: Daily" })
+-- Obsidian
+map("n", "<leader>nn", "<cmd>Obsidian new<cr>", { desc = "Obsidian: New Note" })
+map("n", "<leader>nf", "<cmd>Obsidian search<cr>", { desc = "Obsidian: Find Note" })
+map("n", "<leader>nd", "<cmd>Obsidian today<cr>", { desc = "Obsidian: Daily Note" })
+
+-- Scretch (Scratchpad)
+map("n", "<leader>ns", "<cmd>Scretch<cr>", { desc = "Scretch: New" })
+map("n", "<leader>nS", "<cmd>Scretch new_named<cr>", { desc = "Scretch: New Named" })
+map("n", "<leader>nl", "<cmd>Scretch last<cr>", { desc = "Scretch: Open Last" })
+map("n", "<leader>nF", "<cmd>Scretch search<cr>", { desc = "Scretch: Find (Telescope)" })
+map("n", "<leader>nG", "<cmd>Scretch grep<cr>", { desc = "Scretch: Grep (Telescope)" })
+
+-- Neoclip History
 map("n", "<leader>nc", "<cmd>Telescope neoclip<cr>", { desc = "Neoclip History" })
 
 -- === Terminal ===
