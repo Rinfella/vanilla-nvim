@@ -21,7 +21,7 @@ vim.filetype.add({
 vim.lsp.config("*", {
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	-- Global on_attach function call for all LSP servers
-	on_attach = function(client, bufnr)
+	on_attach = function(bufnr)
 		-- Enable completion if the client supports it
 		-- if client.supports_method("textDocument/completion") then
 		-- 	vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
