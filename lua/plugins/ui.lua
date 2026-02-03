@@ -28,7 +28,7 @@ return {
         },
     },
 
-    -- Noice (FIXED: Added stylize_markdown override)
+    -- Noice
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -44,7 +44,7 @@ return {
         },
     },
 
-    -- Dashboard (FIXED: Random Header + New Shortcuts + Fixed Icons)
+    -- Dashboard
     {
         "goolord/alpha-nvim",
         event = "VimEnter",
@@ -85,6 +85,14 @@ return {
                 dashboard.button("m", "󰊠  Mason", ":Mason<CR>"),
                 dashboard.button("q", "󰈆  Quit", ":qa<CR>"),
             }
+
+            -- Footer with Plugin Count & Startup Time
+            dashboard.section.footer.val = function()
+                local stats = require("lazy").stats()
+                local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                return "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
+            end
+
             require("alpha").setup(dashboard.config)
         end,
     },
