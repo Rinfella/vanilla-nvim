@@ -26,6 +26,14 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
 map("n", "<leader>gg", "<cmd>Lazygit<cr>", { desc = "Lazygit" })
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<cr>", { desc = "Blame Line" })
 
+-- Trouble (Diagnostics)
+map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf<cr>", { desc = "Buffer Diagnostics (Trouble)" })
+map("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
+map("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false<cr>", { desc = "LSP (Trouble)" })
+map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
+map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
+
 -- === Notes (Grouped under <leader>n) ===
 -- Obsidian
 map("n", "<leader>nn", "<cmd>Obsidian new<cr>", { desc = "Obsidian: New Note" })
