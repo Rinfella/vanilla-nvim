@@ -34,6 +34,14 @@ map("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false<cr>", { desc = "LSP 
 map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
 map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
 
+-- === 99 (AI Agent) ===
+map("n", "<leader>9f", function() require("99").fill_in_function() end, { desc = "99: Fill Function" })
+map("n", "<leader>9F", function() require("99").fill_in_function_prompt() end, { desc = "99: Fill Function (Prompt)" })
+map("v", "<leader>9v", function() require("99").visual() end, { desc = "99: Visual Selection" })
+map("v", "<leader>9V", function() require("99").visual_prompt() end, { desc = "99: Visual (Prompt)" })
+map("n", "<leader>9s", function() require("99").stop_all_requests() end, { desc = "99: Stop Requests" })
+map("n", "<leader>9l", function() require("99").view_logs() end, { desc = "99: View Logs" })
+
 -- === Notes (Grouped under <leader>n) ===
 -- Obsidian
 map("n", "<leader>nn", "<cmd>Obsidian new<cr>", { desc = "Obsidian: New Note" })
@@ -53,3 +61,8 @@ map("n", "<leader>nc", "<cmd>Telescope neoclip<cr>", { desc = "Neoclip History" 
 -- === Terminal ===
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Term Horizontal" })
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Term Float" })
+
+-- === Copilot ===
+map("i", "<A-a>", function() require("copilot.suggestion").accept() end, { desc = "Copilot: Accept Block" })
+map("i", "<A-l>", function() require("copilot.suggestion").accept_line() end, { desc = "Copilot: Accept Line" })
+map("i", "<A-w>", function() require("copilot.suggestion").accept_word() end, { desc = "Copilot: Accept Word" })
