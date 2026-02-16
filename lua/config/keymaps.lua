@@ -69,7 +69,7 @@ map("n", "<leader>nF", "<cmd>Scretch search<cr>", { desc = "Scretch: Find (Teles
 map("n", "<leader>nG", "<cmd>Scretch grep<cr>", { desc = "Scretch: Grep (Telescope)" })
 
 -- Neoclip History
-map("n", "<leader>nc", "<cmd>Telescope neoclip<cr>", { desc = "Neoclip History" })
+map("n", "<leader>nc", "<cmd>Telescope neoclip initial_mode=normal<cr>", { desc = "Neoclip History" })
 
 -- === Terminal ===
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Term Horizontal" })
