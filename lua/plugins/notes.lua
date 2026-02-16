@@ -16,6 +16,11 @@ return {
                 },
             },
             ui = { enable = false }, -- Optional: clean UI
+            daily_notes = {
+                folder = "notes/daily-notes",
+                date_format = "%Y-%m-%d",
+            },
+
             completion = { nvim_cmp = true },
 
             legacy_commands = false,

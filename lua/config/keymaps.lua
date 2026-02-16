@@ -47,6 +47,19 @@ map("n", "<leader>9l", function() require("99").view_logs() end, { desc = "99: V
 map("n", "<leader>nn", "<cmd>Obsidian new<cr>", { desc = "Obsidian: New Note" })
 map("n", "<leader>nf", "<cmd>Obsidian search<cr>", { desc = "Obsidian: Find Note" })
 map("n", "<leader>nd", "<cmd>Obsidian today<cr>", { desc = "Obsidian: Daily Note" })
+map("n", "<leader>ny", "<cmd>Obsidian yesterday<cr>", { desc = "Obsidian: Yesterday" })
+map("n", "<leader>nm", "<cmd>Obsidian tomorrow<cr>", { desc = "Obsidian: Tomorrow" })
+-- Show backlinks (what links to this note?) - Crucial for Zettelkasten
+map("n", "<leader>nb", "<cmd>Obsidian backlinks<cr>", { desc = "Obsidian: Backlinks" })
+-- Show outgoing links (what does this note link to?)
+map("n", "<leader>nl", "<cmd>Obsidian links<cr>", { desc = "Obsidian: Outgoing Links" })
+-- Open the current note in the actual Obsidian App
+map("n", "<leader>no", "<cmd>Obsidian open<cr>", { desc = "Obsidian: Open in App" })
+map("n", "<leader>ng", "<cmd>Obsidian tags<cr>", { desc = "Obsidian: Search Tags" })
+-- Toggle Checkbox (cycles [ ] -> [x] -> [-])
+map("n", "<leader>nc", "<cmd>ObsidianToggleCheckbox<cr>", { desc = "Obsidian: Toggle Checkbox" })
+-- Extract selected text to a new note
+map("v", "<leader>nx", "<cmd>ObsidianExtractNote<cr>", { desc = "Obsidian: Extract Selection" })
 
 -- Scretch (Scratchpad)
 map("n", "<leader>ns", "<cmd>Scretch<cr>", { desc = "Scretch: New" })
