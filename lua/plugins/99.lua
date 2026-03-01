@@ -8,7 +8,7 @@ return {
     -- Configuration options
     opts = {
         -- Use opencode's free model
-        model = "opencode/minimax-m2.1-free",
+        model = "opencode/minimax-m2.5-free",
 
         display_errors = true,
         completion = {
