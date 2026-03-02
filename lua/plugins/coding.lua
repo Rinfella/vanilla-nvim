@@ -49,7 +49,7 @@ return {
         build = ":TSUpdate",
         event = "BufRead",
         config = function()
-            require("nvim-treesitter.configs").setup({
+            require("nvim-treesitter.config").setup({
                 ensure_installed = { "lua", "python", "php", "html", "css", "bash", "regex", "markdown", "markdown_inline" },
                 highlight = { enable = true },
                 indent = { enable = true },
