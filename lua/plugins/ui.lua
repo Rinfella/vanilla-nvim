@@ -1,4 +1,5 @@
 -- lua/plugins/ui.lua
+
 return {
     -- Icons
     {
@@ -41,7 +42,31 @@ return {
                 },
             },
             presets = { bottom_search = true, command_palette = true, long_message_to_split = true },
+            routes = {
+                -- Filter out deprecation warnings
+                { filter = { event = "notify", find = "deprecat" }, opts = { skip = true } },
+                { filter = { event = "msg_show", find = "deprecat" }, opts = { skip = true } },
+                { filter = { event = "msg_show", find = "vim.tbl_flatten" }, opts = { skip = true } },
+            },
         },
+    },
+
+    -- nvim-notify (notification customization)
+    {
+        "rcarriga/nvim-notify",
+        event = "VeryLazy",
+        opts = {
+            timeout = 2000,
+            stages = "static",
+            max_width = 80,
+        },
+    },
+
+    -- Notify Log (captures notifications to register)
+    {
+        "BSeblu/notify-log.nvim",
+        event = "VeryLazy",
+        opts = { register = "l" },
     },
 
     -- Dashboard

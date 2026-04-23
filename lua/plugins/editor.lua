@@ -7,7 +7,16 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("telescope").setup({
-                defaults = { file_ignore_patterns = { ".git/", "node_modules" } }
+                defaults = {
+                    file_ignore_patterns = { ".git/", "node_modules", "__pycache__", ".venv" },
+                    path_display = { "smart" },
+                    mappings = {
+                        i = {
+                            ["<C-j>"] = "move_selection_next",
+                            ["<C-k>"] = "move_selection_previous",
+                        },
+                    },
+                }
             })
         end,
     },
@@ -55,6 +64,11 @@ return {
     {
         "ThePrimeagen/harpoon",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function() require("harpoon").setup() end,
+        config = function()
+            require("harpoon").setup({
+                menu = { width = 60 },
+                terminal = { autoshide = false },
+            })
+        end,
     }
 }

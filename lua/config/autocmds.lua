@@ -5,17 +5,29 @@ local lsp = require("config.lsp")
 
 -- 1. Native LSP Start (Replaces lspconfig)
 autocmd("FileType", {
-    pattern = { "python", "php", "lua", "html", "css", "json" },
+    pattern = {
+        "python", "php", "lua", "html", "css", "json", "go", "rust",
+        "typescript", "javascript", "terraform", "ansible", "sql",
+        "dockerfile", "yaml", "toml", "sh", "bash"
+    },
     callback = function(args)
-        -- Map filetypes to server keys.
-        -- Simple mapping: python->python.
-        -- Complex mapping: css->html (if using vscode-html-server for both)
         local ft_map = {
             python = "python",
             php = "php",
             lua = "lua",
             html = "html",
-            json = "json"
+            json = "json",
+            go = "go",
+            rust = "rust",
+            typescript = "typescript",
+            javascript = "javascript",
+            terraform = "terraform",
+            ansible = "ansible",
+            sql = "sql",
+            dockerfile = "dockerfile",
+            yaml = "yaml",
+            sh = "bash",
+            bash = "bash",
         }
         local server = ft_map[args.match]
         if server then lsp.start(server) end
@@ -70,5 +82,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
             vim.cmd.cd(arg)
             require("telescope").extensions.file_browser.file_browser({ path = arg })
         end
+    end,
+})
+
+-- 5. Plugin Update Reminder
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        vim.defer_fn(function()
+            if require("lazy.status").has_updates() then
+                vim.notify("🔄 Plugin updates available! Run :Lazy to update", vim.log.levels.INFO)
+            end
+        end, 3000)
     end,
 })

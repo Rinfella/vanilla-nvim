@@ -6,7 +6,7 @@ M.servers = {
     python = {
         binary = "pyright-langserver",
         args = { "--stdio" },
-        root = { "pyproject.toml", "uv.lock", ".git" },
+        root = { "pyproject.toml", "uv.lock", "setup.py", ".git" },
     },
     php = {
         binary = "intelephense",
@@ -26,6 +26,46 @@ M.servers = {
     },
     json = {
         binary = "vscode-json-language-server",
+        args = { "--stdio" },
+        root = { ".git" },
+    },
+    go = {
+        binary = "gopls",
+        root = { "go.mod", ".git" },
+    },
+    rust = {
+        binary = "rust-analyzer",
+        root = { "Cargo.toml", ".git" },
+    },
+    typescript = {
+        binary = "typescript-language-server",
+        args = { "--stdio" },
+        root = { "package.json", "tsconfig.json", ".git" },
+    },
+    javascript = {
+        binary = "typescript-language-server",
+        args = { "--stdio" },
+        root = { "package.json", ".git" },
+    },
+    terraform = {
+        binary = "terraform-ls",
+        root = { ".terraform.lock.hcl", ".git" },
+    },
+    ansible = {
+        binary = "ansible-language-server",
+        root = { ".git" },
+    },
+    sql = {
+        binary = "sqls",
+        root = { ".sqls", ".git" },
+    },
+    dockerfile = {
+        binary = "dockerfile-language-server",
+        args = { "--stdio" },
+        root = { ".git" },
+    },
+    yaml = {
+        binary = "yaml-language-server",
         args = { "--stdio" },
         root = { ".git" },
     },
@@ -52,14 +92,13 @@ function M.start(server_key)
 
     if config.args then vim.list_extend(cmd, config.args) end
 
-    -- Use Native 0.11 Start API
+    -- Use Native LSP Start API
     vim.lsp.start({
         name = config.binary,
         cmd = cmd,
         root_dir = vim.fs.root(0, config.root) or vim.fn.getcwd(),
         settings = config.settings,
         init_options = config.init_options,
-        -- Link capabilities to Cmp for completion
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
     })
 end

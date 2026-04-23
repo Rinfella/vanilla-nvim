@@ -35,12 +35,11 @@ map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List
 map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
 
 -- === 99 (AI Agent) ===
-map("n", "<leader>9f", function() require("99").fill_in_function() end, { desc = "99: Fill Function" })
-map("n", "<leader>9F", function() require("99").fill_in_function_prompt() end, { desc = "99: Fill Function (Prompt)" })
-map("v", "<leader>9v", function() require("99").visual() end, { desc = "99: Visual Selection" })
-map("v", "<leader>9V", function() require("99").visual_prompt() end, { desc = "99: Visual (Prompt)" })
+map("n", "<leader>9v", function() require("99").visual() end, { desc = "99: Visual Selection" })
+map("n", "<leader>9V", function() require("99").visual({ prompt = true }) end, { desc = "99: Visual (Prompt)" })
 map("n", "<leader>9s", function() require("99").stop_all_requests() end, { desc = "99: Stop Requests" })
 map("n", "<leader>9l", function() require("99").view_logs() end, { desc = "99: View Logs" })
+map("n", "<leader>9i", function() require("99").info() end, { desc = "99: Info" })
 
 -- === Notes (Grouped under <leader>n) ===
 -- Obsidian
@@ -74,8 +73,3 @@ map("n", "<leader>nc", "<cmd>Telescope neoclip initial_mode=normal<cr>", { desc 
 -- === Terminal ===
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Term Horizontal" })
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Term Float" })
-
--- === Copilot ===
-map("i", "<A-a>", function() require("copilot.suggestion").accept() end, { desc = "Copilot: Accept Block" })
-map("i", "<A-l>", function() require("copilot.suggestion").accept_line() end, { desc = "Copilot: Accept Line" })
-map("i", "<A-w>", function() require("copilot.suggestion").accept_word() end, { desc = "Copilot: Accept Word" })
